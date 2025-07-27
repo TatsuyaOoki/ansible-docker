@@ -1,8 +1,8 @@
 ---
 RHELServers:
   hosts:
-    RHEL10:
-      ansible_host: 192.168.5.129
+    RHEL9:
+      ansible_host: 192.168.5.130
       ansible_connection: ssh
       ansible_user: ansibleuser
       # ansible_password: xxxxx
