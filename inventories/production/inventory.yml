@@ -1,0 +1,19 @@
+---
+RHELServer:
+  children:
+    zabbix_servers:
+      hosts:
+        RHEL10:
+          ansible_host: 192.168.5.129
+          ansible_connection: ssh
+          ansible_user: ansibleuser
+          # ansible_password: xxxxx
+          ansible_ssh_private_key_file: "./private/ansible.pem"
+          ansible_become_user: root
+          ansible_become_password: !vault |
+                    $ANSIBLE_VAULT;1.1;AES256
+                    33666133646564613264346636363566663161613232393438396162633163363039356463666337
+                    3964336136626161346631636530363534316465343838380a303164303937323434316633633430
+                    32653536663037326561353739346565666230336363643162666337333032316233653139643634
+                    3733363366666662640a373638336334333162616235306337663836366535633261376335353261
+                    3736
