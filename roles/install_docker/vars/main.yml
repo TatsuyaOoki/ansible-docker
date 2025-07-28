@@ -1,0 +1,12 @@
+---
+install_docker_packages:
+  - "docker-ce"
+  - "docker-ce-cli"
+  - "containerd.io"
+  - "docker-buildx-plugin"
+  - "docker-compose-plugin"
+install_docker_remove_conflicting_packages:
+  - "podman"
+  - "runc"
+install_docker_repo_url: "https://download.docker.com/linux/rhel/docker-ce.repo"
+install_docker_service_name: "docker.service"

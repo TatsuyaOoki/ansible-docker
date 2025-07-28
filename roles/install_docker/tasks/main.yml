@@ -1,0 +1,3 @@
+---
+- name: Include main tasks
+  ansible.builtin.include_tasks: install_docker.yml

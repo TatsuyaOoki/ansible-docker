@@ -1,0 +1,42 @@
+---
+- name: Remove conflicting packages
+  ansible.builtin.dnf:
+    name: "{{ install_docker_remove_conflicting_packages }}"
+    state: absent
+  become: true
+
+- name: Install DNF plugins
+  ansible.builtin.dnf:
+    name:
+      - dnf-plugins-core
+    state: present
+  become: true
+
+- name: Download official Docker repo file
+  ansible.builtin.get_url:
+    url: "{{ install_docker_repo_url }}"
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: "0644"
+    owner: root
+    group: root
+  become: true
+
+- name: Install Docker
+  ansible.builtin.dnf:
+    name: "{{ install_docker_packages }}"
+    state: present
+  become: true
+
+- name: Start Docker service
+  ansible.builtin.systemd:
+    name: "{{ install_docker_service_name }}"
+    state: started
+    enabled: true
+  become: true
+
+- name: Populate service facts
+  ansible.builtin.service_facts:
+
+- name: Print docker service facts
+  ansible.builtin.debug:
+    var: ansible_facts.services[ install_docker_service_name ]
