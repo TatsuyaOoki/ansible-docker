@@ -1,0 +1,12 @@
+---
+- name: Docker Playbook
+  hosts: RHELServers
+  pre_tasks:
+    - name: Pre Check OS
+      ansible.builtin.assert:
+        that:
+          - ansible_os_family == "RedHat"
+          - "'RHELServers' in group_names"
+        fail_msg: Target device is not RHEL
+  roles:
+    - install_docker
