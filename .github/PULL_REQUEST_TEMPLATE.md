@@ -4,7 +4,8 @@ xxxx
 
 ## 変更点
 
-xxxx
+- xxxx
+- xxxx
 
 ## 動作確認
 
