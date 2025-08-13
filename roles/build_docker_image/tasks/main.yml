@@ -1,0 +1,19 @@
+---
+- name: Pre Check python packages
+  community.general.python_requirements_info:
+    dependencies:
+      - docker
+  delegate_to: localhost
+  run_once: true
+  register: build_docker_image_python_requirements
+
+- name: Assert python packages
+  ansible.builtin.assert:
+    that:
+      - "build_docker_image_python_requirements.not_found | length == 0"
+    fail_msg: "Required python package 'docker' is not installed."
+  delegate_to: localhost
+  run_once: true
+
+- name: Include main tasks
+  ansible.builtin.include_tasks: build_docker_image.yml
