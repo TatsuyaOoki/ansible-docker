@@ -1,0 +1,9 @@
+---
+build_docker_image_path: "files/Dockerfile"
+build_docker_image_name: "sample_nginx_image"
+build_docker_image_tag: "latest"
+build_docker_image_context_files:
+  - src: "nginx/nginx.j2"
+    dest: "nginx.conf"
+  - src: "nginx/index.j2"
+    dest: "index.html"

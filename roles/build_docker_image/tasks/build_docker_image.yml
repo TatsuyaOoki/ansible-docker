@@ -1,0 +1,34 @@
+---
+- name: Build Docker Image block
+  block:
+    - name: Create Temp Directory
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: "docker_build"
+      register: build_docker_image_temp_dir
+
+    - name: Create docker related files to Temp Directory
+      ansible.builtin.template:
+        src: "{{ item.src }}"
+        dest: "{{ build_docker_image_temp_dir.path }}/{{ item.dest }}"
+        mode: "0644"
+      loop: "{{ build_docker_image_context_files }}"
+
+    - name: Copy Dockerfile to Temp Directory
+      ansible.builtin.copy:
+        src: "{{ build_docker_image_path }}"
+        dest: "{{ build_docker_image_temp_dir.path }}/Dockerfile"
+        mode: "0644"
+
+    - name: Build Docker image
+      community.docker.docker_image_build:
+        path: "{{ build_docker_image_temp_dir.path }}"
+        name: "{{ build_docker_image_name }}"
+        tag: "{{ build_docker_image_tag }}"
+      become: true
+
+  always:
+    - name: Remove Temp Directory
+      ansible.builtin.file:
+        path: "{{ build_docker_image_temp_dir.path }}"
+        state: absent

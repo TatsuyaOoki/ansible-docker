@@ -1,0 +1,17 @@
+---
+argument_specs:
+  main:
+    options:
+      build_docker_image_path:
+        type: "str"
+        required: true
+      build_docker_image_name:
+        type: "str"
+        required: true
+      build_docker_image_tag:
+        type: "str"
+        required: true
+      build_docker_image_context_files:
+        type: "list"
+        elements: "dict"
+        required: true

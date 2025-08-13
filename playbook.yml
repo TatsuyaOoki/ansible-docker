@@ -10,3 +10,4 @@
         fail_msg: Target device is not RHEL
   roles:
     - install_docker
+    - build_docker_image
