@@ -11,5 +11,5 @@
 
 2. 必要ファイルの配置
 
-    - `private/ansible.pem`を配置しパーミッションを600に設定
-    - `private/ansible_vault_pass.txt`にvaultのパスワードを記載したファイルを配置
+    - 実行環境に`private/ansible.pem`を配置しパーミッションを600に設定
+    - 実行環境に`private/ansible_vault_pass.txt`にvaultのパスワードを記載したファイルを配置
